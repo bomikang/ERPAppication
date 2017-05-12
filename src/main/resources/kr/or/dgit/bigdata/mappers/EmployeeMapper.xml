@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.dgit.bigdata.mappers.EmployeeMapper">
+	<insert id="insertEmp" parameterType="Employee">
+		insert into employee(ename, salary, dno, gender, joindate, title) 
+		values(#{ename}, #{salary}, #{dept.dcode}, #{gender}, #{joindate}, #{title.tcode})
+	</insert>
+	
+	<resultMap id="EmpResult" type="Employee" >
+		<id property="eno" column="eno" />
+		<result property="ename" column="ename" />
+		<result property="salary" column="salary" />
+		<result property="dept.dcode" column="dno" />
+		<result property="gender" column="gender" />
+		<result property="joindate" column="joindate" />
+		<result property="title.tcode" column="title" />
+	</resultMap>
+
+	<select id="selectAllEmp" resultType="Employee" resultMap="EmpResult">
+		select * from employee 
+		order by eno asc
+	</select>
+	
+	<select id="selectOneEmp" parameterType="int" resultType="Employee" resultMap="EmpResult">
+		select * from employee
+		where eno = #{eno}
+	</select>
+	
+	<delete id="deleteEmp" parameterType="int">
+		delete from employee where eno = #{eno}
+	</delete>
+	
+	<update id="updateEmp" parameterType="Employee">
+		update employee 
+		set ename = #{ename}, salary = #{salary}, dno = #{dept.dcode}, gender = #{gender}, joindate = #{joindate}, title = #{title.tcode}
+		where eno = #{eno} 
+	</update>
+	
+</mapper>

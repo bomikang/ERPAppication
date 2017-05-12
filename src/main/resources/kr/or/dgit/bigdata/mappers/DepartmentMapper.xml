@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.dgit.bigdata.mappers.DepartmentMapper">
+
+	<select id="selectAllDept" resultType="Department">
+		select * from department order by dcode asc
+	</select>
+	
+	<select id="selectOneDept" parameterType="int" resultType="Department">
+		select * from department
+		where dcode = #{dcode}
+	</select>
+	
+	<insert id="insertDept" parameterType="Department">
+		insert into department(dname, floor)
+		values(#{dname}, #{floor})
+	</insert>
+	
+	<delete id="deleteDept" parameterType="int">
+		delete from department
+		where dcode = #{dcode}
+	</delete>
+	
+	<update id="updateDept" parameterType="Department">
+		update department
+		set dname = #{dname}, floor = #{floor}
+		where dcode = #{dcode}
+	</update>
+</mapper>

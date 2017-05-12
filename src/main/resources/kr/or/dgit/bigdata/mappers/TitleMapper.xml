@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.dgit.bigdata.mappers.TitleMapper">
+	<select id="selectAllTitle" resultType="Title">
+		select * from title order by tcode asc
+	</select>
+	
+	<select id="selectOneTitle" parameterType="int" resultType="Title">
+		select * from title
+		where tcode = #{tcode}
+	</select>
+	
+	<insert id="insertTitle" parameterType="Title">
+		insert title(tname)
+		values(#{tname})
+	</insert>
+	
+	<delete id="deleteTitle" parameterType="int">
+		delete from title
+		where tcode = #{tcode}
+	</delete>
+	
+	<update id="updateTitle" parameterType="Title">
+		update title
+		set tname = #{tname}
+		where tcode = #{tcode}
+	</update>
+</mapper>
